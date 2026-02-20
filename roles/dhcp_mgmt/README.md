@@ -1,38 +1,74 @@
-Role Name
-=========
+# dhcp_mgmt
 
-A brief description of the role goes here.
+Manages DHCP pools and static reservations on FortiGate and MikroTik devices.
 
-Requirements
-------------
+## Requirements
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+The following Ansible collections must be installed:
 
-Role Variables
---------------
+```
+fortinet.fortios
+community.routeros
+```
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Install them via:
+```bash
+ansible-galaxy collection install -r requirements.yml
+```
 
-Dependencies
-------------
+## Role Variables
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+All variables are expected to be delivered by the **NetBox dynamic inventory** in production.
+Defaults in `defaults/main.yml` are for local testing/syntax-checks only.
 
-Example Playbook
-----------------
+| Variable | Type | Description |
+|----------|------|-------------|
+| `dhcp_pools` | list | List of DHCP pool objects (see schema below) |
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+### DHCP pool object schema
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yaml
+dhcp_pools:
+  - name: MGMT_POOL              # Pool name
+    vlan_id: 10                  # Associated VLAN ID
+    subnet: "192.168.10.0/24"    # Subnet for the pool
+    gateway: "192.168.10.1"      # Default gateway
+    dns_servers:                 # DNS server(s)
+      - "1.1.1.1"
+      - "8.8.8.8"
+    lease_time: 86400            # Lease duration in seconds
+    reservations:                # Optional static reservations
+      - mac: "AA:BB:CC:DD:EE:FF"
+        ip: "192.168.10.10"
+        hostname: "server01"
+```
 
-License
--------
+## Supported `ansible_network_os` values
 
-BSD
+| Vendor | `ansible_network_os` |
+|--------|----------------------|
+| FortiGate | `fortinet.fortios.fortios` |
+| MikroTik | `community.routeros.api` |
 
-Author Information
-------------------
+## Example Playbook
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+```yaml
+- hosts: network_devices
+  gather_facts: false
+  roles:
+    - role: declercklouis.collection_networking.dhcp_mgmt
+      vars:
+        dhcp_pools:
+          - name: MGMT_POOL
+            subnet: "192.168.10.0/24"
+            gateway: "192.168.10.1"
+            dns_servers: ["1.1.1.1"]
+```
+
+## License
+
+GPL-3.0-or-later
+
+## Author
+
+Louis Declerck — [packetflow.be](https://lab.packetflow.be)

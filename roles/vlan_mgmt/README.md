@@ -1,38 +1,67 @@
-Role Name
-=========
+# vlan_mgmt
 
-A brief description of the role goes here.
+Manages VLANs across FortiGate, MikroTik, and Ubiquiti UniFi devices.
 
-Requirements
-------------
+## Requirements
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+The following Ansible collections must be installed:
 
-Role Variables
---------------
+```
+fortinet.fortios
+community.routeros
+```
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Install them via:
+```bash
+ansible-galaxy collection install -r requirements.yml
+```
 
-Dependencies
-------------
+## Role Variables
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+All variables are expected to be delivered by the **NetBox dynamic inventory** in production.
+Defaults in `defaults/main.yml` are for local testing/syntax-checks only.
 
-Example Playbook
-----------------
+| Variable | Type | Description |
+|----------|------|-------------|
+| `vlans` | list | List of VLAN objects (see schema below) |
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+### VLAN object schema
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yaml
+vlans:
+  - id: 10                          # VLAN ID (integer)
+    name: MGMT                      # Human-readable name
+    description: "Management VLAN"  # Optional
+    ipv4_prefix: "192.168.10.0/24"  # Optional
+    ipv6_prefix: "fd00:10::/64"     # Optional
+```
 
-License
--------
+## Supported `ansible_network_os` values
 
-BSD
+| Vendor | `ansible_network_os` |
+|--------|----------------------|
+| FortiGate | `fortinet.fortios.fortios` |
+| MikroTik | `community.routeros.api` |
+| Ubiquiti UniFi | *(TBD — UniFi API)* |
 
-Author Information
-------------------
+## Example Playbook
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+```yaml
+- hosts: network_devices
+  gather_facts: false
+  roles:
+    - role: declercklouis.collection_networking.vlan_mgmt
+      vars:
+        vlans:
+          - id: 10
+            name: MGMT
+            ipv4_prefix: "192.168.10.0/24"
+```
+
+## License
+
+GPL-3.0-or-later
+
+## Author
+
+Louis Declerck — [packetflow.be](https://lab.packetflow.be)
