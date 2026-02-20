@@ -20,3 +20,7 @@ Thumbs.db
 
 # Google Antigravity context
 agents.md
+
+.devcontainer
+.ansible
+.venv
