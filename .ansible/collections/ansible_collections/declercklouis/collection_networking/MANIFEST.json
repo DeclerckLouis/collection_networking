@@ -1,0 +1,38 @@
+{
+ "collection_info": {
+  "namespace": "declercklouis",
+  "name": "collection_networking",
+  "version": "1.0.0",
+  "authors": [
+   "Louis Declerck <louis@packetflow.be> (https://lab.packetflow.be)"
+  ],
+  "readme": "README.md",
+  "tags": [
+   "fortigate",
+   "ubiquiti",
+   "mikrotik",
+   "dhcp",
+   "firewall",
+   "vlan",
+   "networking"
+  ],
+  "description": "Packetflow networking collection, used to automate VLAN, DHCP and firewall configuration on homelab networking devices.",
+  "license": [
+   "GPL-3.0-or-later"
+  ],
+  "license_file": null,
+  "dependencies": {},
+  "repository": "https://github.com/declercklouis/collection-networking",
+  "documentation": "https://lab.packetflow.be",
+  "homepage": "https://github.com/declercklouis/collection-networking",
+  "issues": "https://github.com/declercklouis/collection-networking/issues"
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "8c5558de2cd17ed8c60911d468ae3abc12165353ff992ea6109a6c781141a31e",
+  "format": 1
+ },
+ "format": 1
+}

@@ -1,0 +1,22 @@
+# Ansible collection build artifacts
+*.tar.gz
+
+# Ansible retry files
+*.retry
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+
+# Molecule test artifacts
+.molecule/
+
+# Editor / OS artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp
+
+# Google Antigravity context
+agents.md
