@@ -1,4 +1,4 @@
-# Ansible Collection - packetflow.networking
+# Ansible Collection - declercklous.collection_networking
 
 A collection used to manage networking devices in the packetflow homelab.
 Used to configure fortigate, ubiquiti and mikrotik devices.
