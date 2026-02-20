@@ -29,7 +29,6 @@ jobs:
       - name: Install collection dependencies
         run: |
           ansible-galaxy collection install fortinet.fortios community.routeros
-        # Add other required collections here as they are confirmed
 
       - name: Run ansible-lint
         run: ansible-lint
