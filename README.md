@@ -1,4 +1,5 @@
-# Ansible Collection — `declercklouis.collection_networking`
+# Ansible Collection  
+## `declercklouis.collection_networking`
 
 A collection used to automate network configuration in the **Packetflow homelab**.
 Manages FortiGate, MikroTik, and Ubiquiti UniFi devices via [NetBox](https://netbox.dev) as the single Source of Truth and [AWX](https://github.com/ansible/awx) for execution.
@@ -45,7 +46,8 @@ ansible-galaxy collection install -r requirements.yml
 
 ## Architecture
 
-This collection follows the **Traffic Cop** pattern: `tasks/main.yml` in each role routes execution to vendor-specific task files based on `ansible_network_os`. All variable data is sourced from NetBox via the dynamic inventory plugin — no hardcoded values.
+This collection uses `tasks/main.yml` in each role to route execution to vendor-specific task files based on `ansible_network_os`.  
+All variable data is sourced from NetBox via the dynamic inventory plugin — no hardcoded values.  
 
 ## License
 
