@@ -6,7 +6,7 @@
 vlan_mgmt_default_parent_interface: "down" # The software switch on the FortiGate
 vlan_mgmt_default_bridge: "bridge" # For MikroTik (TODO: Branch office router)
 
-vlans:
+vlan_mgmt_vlans:
   - id: 10
     name: "MGMT"
     description: "Management Network"
