@@ -1,0 +1,4 @@
+---
+- name: Fail - UniFi implementation not yet ready
+  ansible.builtin.fail:
+    msg: "The UniFi implementation for vlan_mgmt is not yet complete."

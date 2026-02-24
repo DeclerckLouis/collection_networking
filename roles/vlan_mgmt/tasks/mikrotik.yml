@@ -1,0 +1,8 @@
+---
+- name: Print network_os fact for each host
+  ansible.builtin.debug:
+    msg: "Host {{ inventory_hostname }} has network_os: {{ hostvars[inventory_hostname]['ansible_network_os'] | default(omit) }}"
+
+- name: Print the connection method for each host
+  ansible.builtin.debug:
+    msg: "Host {{ inventory_hostname }} has connection method: {{ hostvars[inventory_hostname]['ansible_connection'] | default(omit) }}"
