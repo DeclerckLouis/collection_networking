@@ -24,3 +24,4 @@ agents.md
 .devcontainer
 .ansible
 .venv
+.ansible/*
