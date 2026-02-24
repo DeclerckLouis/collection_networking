@@ -38,3 +38,7 @@ jobs:
 
       - name: Verify build artifact exists
         run: ls -lh declercklouis-collection_networking-*.tar.gz
+
+      - name: Publish collection to Ansible Galaxy
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: ansible-galaxy collection publish declercklouis-collection_networking-*.tar.gz --api-key ${{ secrets.GALAXY_API_KEY }}
