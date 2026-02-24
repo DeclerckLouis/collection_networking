@@ -1,3 +1,19 @@
 # SPDX-License-Identifier: MIT-0
 ---
 # defaults file for vlan_mgmt
+
+# Default parent interface to bind VLANs to if not explicitly defined per VLAN.
+vlan_mgmt_default_parent_interface: "down" # The software switch on the FortiGate
+vlan_mgmt_default_bridge: "bridge" # For MikroTik (TODO: Branch office router)
+
+vlans:
+  - id: 10
+    name: "MGMT"
+    description: "Management Network"
+    ipv4_prefix: "10.10.10.0/24"
+    ipv6_prefix: "fdb1:6575:ad8a:10::/64"
+
+  - id: 20
+    name: "Guest"
+    description: "Guest network"
+    ipv4_prefix: "10.10.20.0/24"
