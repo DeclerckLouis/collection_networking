@@ -2,6 +2,6 @@
 ---
 - name: Test vlan_mgmt role
   hosts: localhost
-  remote_user: root
+  gather_facts: false
   roles:
-    - vlan_mgmt
+    - declercklouis.collection_networking.vlan_mgmt
