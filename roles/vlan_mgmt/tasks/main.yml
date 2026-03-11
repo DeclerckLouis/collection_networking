@@ -3,12 +3,12 @@
 # tasks file for vlan_mgmt
 - name: Route execution for FortiGate
   ansible.builtin.include_tasks: fortigate.yml
-  when: ansible_network_os == 'fortinet.fortios.fortios'
+  when: ansible_network_os | default('') == 'fortinet.fortios.fortios'
 
 - name: Route execution for MikroTik
   ansible.builtin.include_tasks: mikrotik.yml
-  when: ansible_network_os == 'community.routeros.api'
+  when: ansible_network_os | default('') == 'community.routeros.routeros'
 
 - name: Route execution for UniFi
   ansible.builtin.include_tasks: unifi.yml
-  when: ansible_network_os == 'ubiquiti.unifi'
+  when: ansible_network_os | default('') == 'ubiquiti.unifi'
